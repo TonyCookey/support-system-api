@@ -44,6 +44,12 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_storage_validations (3.0.0)
+      activejob (>= 6.1.4)
+      activemodel (>= 6.1.4)
+      activestorage (>= 6.1.4)
+      activesupport (>= 6.1.4)
+      marcel (>= 1.0.3)
     activejob (8.0.2)
       activesupport (= 8.0.2)
       globalid (>= 0.3.6)
@@ -121,6 +127,8 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.12.2)
+    jwt (3.1.0)
+      base64
     kamal (2.7.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -195,6 +203,9 @@ GEM
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.16)
+    rack-cors (3.0.0)
+      logger
+      rack (>= 3.0.14)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -236,6 +247,8 @@ GEM
     rdoc (6.14.1)
       erb
       psych (>= 4.0.0)
+    redis-client (0.25.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -272,6 +285,12 @@ GEM
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    sidekiq (8.0.4)
+      connection_pool (>= 2.5.0)
+      json (>= 2.9.0)
+      logger (>= 1.6.2)
+      rack (>= 3.1.0)
+      redis-client (>= 0.23.2)
     solid_cable (3.0.8)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -329,16 +348,21 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  active_storage_validations
+  bcrypt
   bootsnap
   brakeman
   debug
   devise (~> 4.9)
   graphql (~> 2.5)
+  jwt
   kamal
   pg (~> 1.1)
   puma (>= 5.0)
+  rack-cors
   rails (~> 8.0.2)
   rubocop-rails-omakase
+  sidekiq
   solid_cable
   solid_cache
   solid_queue
