@@ -49,7 +49,9 @@ end
 gem "graphql", "~> 2.5"
 
 gem "devise", "~> 4.9"
-gem 'bcrypt'
-gem 'jwt'
-gem 'active_storage_validations'
-gem 'sidekiq'
+gem "bcrypt"
+gem "jwt"
+gem "active_storage_validations"
+gem "sidekiq"
+gem "graphql-multipart-upload"
+gem "letter_opener"

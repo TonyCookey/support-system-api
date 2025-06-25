@@ -47,6 +47,23 @@ class GraphqlController < ApplicationController
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+    render json: { errors: [ { message: e.message, backtrace: e.backtrace } ], data: {} }, status: 500
+  end
+  def context
+  {
+    current_user: current_user
+  }
+  end
+
+  private
+
+  def current_user
+    return unless request.headers["Authorization"]
+
+    token = request.headers["Authorization"].split.last
+    decoded = JsonWebToken.decode(token)
+    User.find_by(id: decoded[:user_id]) if decoded
+  rescue
+    nil
   end
 end
