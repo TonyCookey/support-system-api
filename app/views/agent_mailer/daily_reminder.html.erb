@@ -1,0 +1,9 @@
+<h1>Open Tickets</h1>
+
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <strong><%= ticket.title %></strong> - submitted by <%= ticket.user.email %> on <%= ticket.created_at.strftime("%b %d") %>
+    </li>
+  <% end %>
+</ul>

@@ -23,6 +23,7 @@ module Types
     end
     def tickets(status: nil)
       user = context[:current_user]
+      Rails.logger.info "Current user: #{user.inspect}"
       raise GraphQL::ExecutionError, "Unauthorized" unless user
 
       scope = user.role == "agent" ? Ticket.all : user.tickets

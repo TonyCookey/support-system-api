@@ -5,5 +5,5 @@ class Ticket < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  enum status: { open: "open", in_progress: "in_progress", closed: "closed" }
+  validates :status, inclusion: { in: %w[open closed in_progress] }, allow_nil: false
 end

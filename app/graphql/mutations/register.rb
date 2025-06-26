@@ -7,7 +7,7 @@ module Mutations
 
     field :user, Types::UserType, null: true
     field :token, String, null: true
-    field :errors, [String], null: false
+    field :errors, [ String ], null: false
 
     def resolve(name:, email:, password:, role:)
       user = User.new(name: name, email: email, password: password, role: role)
