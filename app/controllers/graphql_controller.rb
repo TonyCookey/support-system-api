@@ -110,7 +110,6 @@ class GraphqlController < ApplicationController
 
     token = request.headers["Authorization"].split.last
     decoded = JsonWebToken.decode(token)
-    Rails.logger.info "Decoded JWT: #{decoded.inspect}"
     User.find_by(id: decoded[:user_id]) if decoded
   rescue
     nil

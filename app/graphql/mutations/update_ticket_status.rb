@@ -13,7 +13,7 @@ module Mutations
       ticket = Ticket.find_by(id: ticket_id)
       return { ticket: nil, errors: [ "Ticket not found" ] } unless ticket
 
-      if %w[open closed].include?(status)
+      if %w[open in_progress closed].include?(status)
         ticket.update(status: status)
         { ticket: ticket, errors: [] }
       else

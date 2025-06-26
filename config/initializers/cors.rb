@@ -7,8 +7,9 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
-    resource '/graphql', headers: :any, methods: [:post]
+    origins "*"
+    resource "/graphql", headers: :any, methods: [ :post ]
+    resource "/api/*", headers: :any, methods: [ :get, :post, :options ]
+    resource "/api/tickets/export", headers: :any, methods: [ :get, :options ]
   end
 end
-
