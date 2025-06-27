@@ -1,9 +1,11 @@
 <h1>Open Tickets</h1>
-
+<p>
+  <strong>Total Open Tickets:</strong> <%= @tickets.count %>
+</p>
 <ul>
   <% @tickets.each do |ticket| %>
     <li>
-      <strong><%= ticket.title %></strong> - submitted by <%= ticket.user.email %> on <%= ticket.created_at.strftime("%b %d") %>
+      <strong><%= ticket.title %></strong> - submitted by <%= ticket.user.name %> on <%= ticket.created_at.strftime("%b %d") %>
     </li>
   <% end %>
 </ul>

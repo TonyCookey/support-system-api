@@ -44,10 +44,17 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+end
+
+group :test do
+  gem "database_cleaner-active_record"
+  gem "shoulda-matchers"
 end
 
 gem "graphql", "~> 2.5"
-
 gem "devise", "~> 4.9"
 gem "bcrypt"
 gem "jwt"

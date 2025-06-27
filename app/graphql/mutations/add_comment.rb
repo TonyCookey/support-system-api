@@ -14,6 +14,10 @@ module Mutations
       return { comment: nil, errors: [ "Ticket not found" ] } unless ticket
 
       if user.role == "customer"
+        # only comment to your own ticket
+        unless ticket.user_id == user.id
+          return { comment: nil, errors: [ "Not authorized" ] }
+        end
         # Only comment if agent already replied
         unless ticket.comments.exists?(user: User.where(role: "agent"))
           return { comment: nil, errors: [ "You can only reply after agent response" ] }
