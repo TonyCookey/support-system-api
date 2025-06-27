@@ -19,7 +19,7 @@ RSpec.describe 'Tickets Query', type: :request do
   end
 
   it 'returns only the customer’s tickets' do
-    graphql_request(params: { query: query }, headers: auth_headers(customer))
+    graphql_request(query,  headers: auth_headers(customer))
 
     data = json['data']['tickets']
     expect(data.size).to eq(2)
@@ -27,7 +27,7 @@ RSpec.describe 'Tickets Query', type: :request do
   end
 
   it 'returns all tickets for agent' do
-    graphql_request(params: { query: query }, headers: auth_headers(agent))
+    graphql_request(query,  headers: auth_headers(agent))
 
     data = json['data']['tickets']
     expect(data.size).to eq(4)

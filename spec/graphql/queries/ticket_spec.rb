@@ -17,7 +17,7 @@ RSpec.describe 'Ticket Query', type: :request do
   end
 
   it 'returns the ticket for the owner' do
-    post '/graphql', params: { query: query, variables: { id: ticket.id } }, headers: auth_headers(customer)
+    graphql_request(query, variables: { id: ticket.id }, headers: auth_headers(customer))
 
     data = json['data']['ticket']
     expect(data['id']).to eq(ticket.id.to_s)
@@ -26,7 +26,7 @@ RSpec.describe 'Ticket Query', type: :request do
 
   it 'blocks access to ticket not owned by customer' do
     other_customer = create(:user, role: "customer")
-    post '/graphql', params: { query: query, variables: { id: ticket.id } }, headers: auth_headers(other_customer)
+    graphql_request(query, variables: { id: ticket.id }, headers: auth_headers(other_customer))
 
     data = json['data']['ticket']
     expect(data).to be_nil
