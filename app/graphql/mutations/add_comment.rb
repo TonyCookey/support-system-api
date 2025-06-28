@@ -6,6 +6,7 @@ module Mutations
     field :comment, Types::CommentType, null: true
     field :errors, [ String ], null: false
 
+    # Adds a comment to a ticket
     def resolve(ticket_id:, content:)
       user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user

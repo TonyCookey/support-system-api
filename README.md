@@ -2,8 +2,8 @@
 
 This is the backend API for the Support System API, built with Ruby on Rails (API-only). It provides endpoints
 
-- Create Ticket
-- Create Ticket with Attachment
+- List Tickets (Pagination, Filtering)
+- Create Ticket (with Attachment)
 - Comment (Agent & Customer)
 - Export Closed Tickets (Agent - Past 1 Month)
 

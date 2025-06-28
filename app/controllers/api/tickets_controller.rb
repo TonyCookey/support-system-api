@@ -3,6 +3,7 @@ class Api::TicketsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_agent!
 
+  # Exports closed tickets from the last month as a CSV file. - Agent only
   def export
     one_month_ago = 1.month.ago
     tickets = Ticket.where(status: "closed").where("updated_at >= ?", one_month_ago)

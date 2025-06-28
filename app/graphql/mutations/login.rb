@@ -7,6 +7,7 @@ module Mutations
     field :token, String, null: true
     field :errors, [ String ], null: false
 
+    # Authenticates a user and returns a JWT token
     def resolve(email:, password:)
       user = User.find_by(email: email)
 

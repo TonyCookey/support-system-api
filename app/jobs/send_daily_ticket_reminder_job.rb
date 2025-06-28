@@ -1,6 +1,7 @@
 class SendDailyTicketReminderJob < ApplicationJob
   queue_as :default
 
+  # This job sends a daily reminder email to agents about open tickets.
   def perform
     User.where(role: "agent").find_each do |agent|
       open_tickets = Ticket.where(status: "open")

@@ -9,6 +9,7 @@ module Mutations
     field :token, String, null: true
     field :errors, [ String ], null: false
 
+    # Registers a new user and returns a JWT token
     def resolve(name:, email:, password:, role:)
       user = User.new(name: name, email: email, password: password, role: role)
 

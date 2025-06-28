@@ -23,6 +23,8 @@ module Types
       argument :limit, Integer, required: false, default_value: 10
       argument :offset, Integer, required: false, default_value: 0
     end
+    # Fetches tickets for the current user or all tickets if the user is an agent
+    # with filtering by status and pagination with limit and offset
     def tickets(status: nil, limit: 10, offset: 0)
       user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user
@@ -35,6 +37,7 @@ module Types
     field :tickets_count, Integer, null: false do
       argument :status, String, required: false
     end
+    # Returns the count of tickets
     def tickets_count(status: nil)
       user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user
@@ -48,6 +51,7 @@ module Types
       argument :id, ID, required: true
     end
 
+    # Fetches a single ticket by ID
     def ticket(id:)
       user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user

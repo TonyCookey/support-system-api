@@ -16,6 +16,7 @@ class GraphqlController < ApplicationController
 
   private
 
+  # Handle regular GraphQL requests
   def handle_regular
     variables = prepare_variables(params[:variables])
     query = params[:query]
@@ -30,6 +31,7 @@ class GraphqlController < ApplicationController
     handle_error_in_development(e)
   end
 
+  # Handle multipart requests with file uploads
   def handle_multipart
     operations = JSON.parse(params[:operations])
     map = JSON.parse(params[:map])
@@ -105,6 +107,7 @@ class GraphqlController < ApplicationController
 
   private
 
+  # extract and decode the jwt token from the Authorization header and find the current user
   def current_user
     return unless request.headers["Authorization"]
 

@@ -6,6 +6,7 @@ module Mutations
     field :ticket, Types::TicketType, null: true
     field :errors, [ String ], null: false
 
+    # Updates the status of a ticket
     def resolve(ticket_id:, status:)
       user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user&.role == "agent"

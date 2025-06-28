@@ -7,11 +7,13 @@ argument :attachments, [ Types::UploadType ], required: false
     field :ticket, Types::TicketType, null: true
     field :errors, [ String ], null: false
 
+    # Creates a new  ticket
     def resolve(title:, description:, attachments: [])
       user = context[:current_user]
       return { ticket: nil, errors: [ "Unauthorized" ] } unless user && user.role == "customer"
 
       ticket = user.tickets.new(title: title, description: description, status: "open")
+      # handle attachments
       if attachments.present?
         attachments.each { |file| ticket.attachments.attach(file) }
       end
