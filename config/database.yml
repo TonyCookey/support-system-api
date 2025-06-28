@@ -57,7 +57,7 @@ test:
   <<: *default
   database: support_system_api_test
   username: postgres
-  
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -71,16 +71,13 @@ test:
 # variable, Rails will automatically merge its configuration values on top of
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
-#
-production:
-  url: <%= ENV["DATABASE_URL"] %>
-#
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: support_system_api_production
     username: support_system_api
     password: <%= ENV["SUPPORT_SYSTEM_API_DATABASE_PASSWORD"] %>
