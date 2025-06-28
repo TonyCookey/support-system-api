@@ -5,4 +5,6 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true, inclusion: { in: %w[agent customer] }
+  validates :password, length: { minimum: 8 }, if: -> { password.present? }
+
 end

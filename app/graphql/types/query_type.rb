@@ -20,14 +20,28 @@ module Types
 
     field :tickets, [ Types::TicketType ], null: false do
       argument :status, String, required: false
+      argument :limit, Integer, required: false, default_value: 10
+      argument :offset, Integer, required: false, default_value: 0
     end
-    def tickets(status: nil)
+    def tickets(status: nil, limit: 10, offset: 0)
       user = context[:current_user]
-      Rails.logger.info "Current user: #{user.inspect}"
+      raise GraphQL::ExecutionError, "Unauthorized" unless user
+      
+      scope = user.role == "agent" ? Ticket.all : user.tickets
+      scope = scope.where(status: status) if status
+      scope.limit(limit).offset(offset)
+    end
+
+    field :tickets_count, Integer, null: false do
+      argument :status, String, required: false
+    end
+    def tickets_count(status: nil)
+      user = context[:current_user]
       raise GraphQL::ExecutionError, "Unauthorized" unless user
 
       scope = user.role == "agent" ? Ticket.all : user.tickets
-      status ? scope.where(status: status) : scope
+      scope = scope.where(status: status) if status
+      scope.count
     end
 
     field :ticket, Types::TicketType, null: true do

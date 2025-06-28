@@ -14,6 +14,7 @@ RSpec.describe 'Tickets Query', type: :request do
           title
           status
         }
+        ticketsCount
       }
     GRAPHQL
   end
@@ -22,8 +23,14 @@ RSpec.describe 'Tickets Query', type: :request do
     graphql_request(query,  headers: auth_headers(customer))
 
     data = json['data']['tickets']
-    expect(data.size).to eq(2)
     expect(data.pluck('id')).to match_array(customer_tickets.map { |t| t.id.to_s })
+  end
+
+  it 'returns the tickets count for customer' do
+    graphql_request(query,  headers: auth_headers(customer))
+
+    data = json['data']['ticketsCount']
+    expect(data).to eq(2)
   end
 
   it 'returns all tickets for agent' do
