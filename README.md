@@ -1,24 +1,50 @@
-# README
+# Support System API (Rails Backend)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend API for the Support System API, built with Ruby on Rails (API-only). It provides endpoints
 
-Things you may want to cover:
+- Create Ticket
+- Create Ticket with Attachment
+- Comment (Agent & Customer)
+- Export Closed Tickets (Agent - Past 1 Month)
 
-* Ruby version
+---
 
-* System dependencies
+## Development Setup
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Ruby 3.1+ (3.4.x recommended)
+- Rails 7 or 8
+- PostgreSQL
 
-* Database initialization
+---
 
-* How to run the test suite
+### Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+# Clone the repo
 
-* Deployment instructions
+git clone https://github.com/TonyCookey/support-system-api.git
 
-* ...
+cd support-system-api
+
+# Install dependencies
+bundle install
+
+# Copy environment files (optional)
+cp .env.example .env
+
+# Setup the database
+rails db:create db:migrate
+
+# Start the Rails server
+rails server
+
+```
+
+### Testing
+
+```
+bundle exec rspec
+
+```
