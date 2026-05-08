@@ -48,4 +48,4 @@ end
 
 gem "graphql", "~> 2.5"
 
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
