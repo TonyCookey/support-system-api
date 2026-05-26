@@ -109,7 +109,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphql (2.5.9)
+    graphql (2.6.3)
       base64
       fiber-storage
       logger
@@ -333,7 +333,7 @@ DEPENDENCIES
   brakeman
   debug
   devise (~> 4.9)
-  graphql (~> 2.5)
+  graphql (~> 2.6)
   kamal
   pg (~> 1.1)
   puma (>= 5.0)
